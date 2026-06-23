@@ -1,4 +1,5 @@
-const {test} = require('@playwright/test');
+const {test,expect} = require('@playwright/test');
+//const {expect} = require('@playwright/test');
 
 /*
 //Syntax for the test cases. One test block is one testcase
@@ -20,11 +21,18 @@ test ('Browser based TC',async ({browser})=> //browser is a fixture which comes 
     const context = await browser.newContext(); //this will create and open a new instance of webbrowser with no cookies or predifined cookies.
     const page= await context.newPage(); //this will open a new page in the browser
     await page.goto("https://www.google.com/webhp?zx=1782210508990");
+    console.log(await page.title()); //This will print the title of the page in the console
+    expect(await page.title()).toBe("Google"); //This will check the title of the page and if it is not matching then it will fail the test case
+    
 });
 
-test.only ('Page based TC',async ({page})=> //Opens the browser and new webpage without any tokens or cookies.
+test ('Page based TC',async ({page})=> //Opens the browser and new webpage without any tokens or cookies.
 //Use of test.only will run only this test case and ignore all the remaning test cases
 {
     
     await page.goto("https://doodles.google/");
+    console.log(await page.title()); //This will print the title of the page in the console
+    expect(await page.title()).toBe("Google Doodles - Google’s Search Logo Changes for Every Occasion"); //This will check the title of the page and if it is not matching then it will fail the test case
+
+    
 });

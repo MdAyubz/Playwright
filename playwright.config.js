@@ -15,7 +15,9 @@ const config = ({
     reporter:'html',
 
     use:{
-      browserName: 'firefox'
+      browserName: 'firefox',
+      headless: false, //This will open the browser in headless mode. If we want to see the browser then we need to set it to false
+
 
     }
   
