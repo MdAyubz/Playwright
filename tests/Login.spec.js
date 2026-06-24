@@ -36,9 +36,9 @@ test ('Page Title',async ({page})=> {
     await page.screenshot({ path: 'Location_screenshot.png' });
 
 // Year Dropdown
-    await page.waitForTimeout(2000);
-    await page.selectOption('#ddlFinancialYear', '13141'); //This will select the option with value '13141' from the dropdown with id 'YearDropdown'
-    await page.screenshot({ path: 'Year_screenshot.png' });
+  //  await page.waitForTimeout(2000);
+    //await page.selectOption('#ddlFinancialYear', '13141'); //This will select the option with value '13141' from the dropdown with id 'YearDropdown'
+    //await page.screenshot({ path: 'Year_screenshot.png' });
 
 
 });
