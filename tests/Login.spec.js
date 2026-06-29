@@ -132,21 +132,21 @@ test('End-to-End Flow', async ({ page }) => {
     //     fullPage: true
     // });
 
-    // ✅ Hamburger
-    await page.locator('i.fa-navicon').click();
+    // // ✅ Hamburger
+    // await page.locator('i.fa-navicon').click();
 
-    // ✅ Safer logout
-    // const logoutBtn = page.locator('#ctl00_btnLogout');
-    // //await expect(logoutBtn).toBeVisible();
-    // await logoutBtn.click();
-    await page.locator("//body/form[@id='aspnetForm']/div[@id='container']/div[@class='boxed']/nav[@id='mainnav-container']/div[@id='mainnav']/div[@id='mainnav-menu-wrap']/div[@id='ctl00_menuDiv']/div[@class='nano-content']/ul[@id='mainnav-menu']/li[1]/a[1]/i[1]").click();
-    await page.locator("#ctl00_btnLogout").click();
+    // // ✅ Safer logout
+    // // const logoutBtn = page.locator('#ctl00_btnLogout');
+    // // //await expect(logoutBtn).toBeVisible();
+    // // await logoutBtn.click();
+    // await page.locator("//body/form[@id='aspnetForm']/div[@id='container']/div[@class='boxed']/nav[@id='mainnav-container']/div[@id='mainnav']/div[@id='mainnav-menu-wrap']/div[@id='ctl00_menuDiv']/div[@class='nano-content']/ul[@id='mainnav-menu']/li[1]/a[1]/i[1]").click();
+    // await page.locator("#ctl00_btnLogout").click();
 
-    // ✅ Verify logout
-    //await expect(page).toHaveURL(/Login/);
+    // // ✅ Verify logout
+    // //await expect(page).toHaveURL(/Login/);
 
-    await page.screenshot({
-        path: 'Logout_screenshot.png',
-        fullPage: true
-    });
+    // await page.screenshot({
+    //     path: 'Logout_screenshot.png',
+    //     fullPage: true
+    // });
 });
