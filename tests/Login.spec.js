@@ -13,6 +13,18 @@ test('Login Test', async ({page}) => {
     console.log(await page.locator('[id="toast-container"]').textContent());
     await page.locator('[id="toast-container"]').textContent("Incorrect");
 
+    await page.locator('[id="userEmail"]').fill("");
+    await page.locator('[id="userEmail"]').fill("ayubkhan9888@gmail.com");
+    await page.locator('[id="userPassword"]').fill("");
+    await page.locator('[id="userPassword"]').fill("Ay@9845563");
+    await page.locator('[id="login"]').click();
+
+    console.log(await page.title());
+    console.log (await page.locator('.card-body b').first().textContent());
+    const itemTitles = await page.locator('.card-body b').allTextContents();
+    console.log(itemTitles);
+    await page.locator('.card-body b').first().click();
+    console.log (await page.title());
 
 });
 
