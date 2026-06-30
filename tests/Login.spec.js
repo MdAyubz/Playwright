@@ -1,35 +1,35 @@
 const {test, expect} = require('@playwright/test');
 
-// test('Login Test', async ({page}) => {
-//     await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
-//     const title = await page.title();
-//     console.log(title);
-//     await expect(page).toHaveTitle(title);
-//     console.log("Title is correct");
+test('Login Test', async ({page}) => {
+    await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
+    const title = await page.title();
+    console.log(title);
+    await expect(page).toHaveTitle(title);
+    console.log("Title is correct");
 
-//     await page.locator('[id="userEmail"]').fill('ayub@gmail.com');
-//     await page.locator('[id="userPassword"]').fill('ayub');
-//     await page.locator('[id="login"]').click();
-//     console.log(await page.locator('[id="toast-container"]').textContent());
-//     await page.locator('[id="toast-container"]').textContent("Incorrect");
+    await page.locator('[id="userEmail"]').fill('ayub@gmail.com');
+    await page.locator('[id="userPassword"]').fill('ayub');
+    await page.locator('[id="login"]').click();
+    console.log(await page.locator('[id="toast-container"]').textContent());
+    await page.locator('[id="toast-container"]').textContent("Incorrect");
 
-//     await page.locator('[id="userEmail"]').fill("");
-//     await page.locator('[id="userEmail"]').fill("ayubkhan9888@gmail.com");
-//     await page.locator('[id="userPassword"]').fill("");
-//     await page.locator('[id="userPassword"]').fill("Ay@9845563");
-//     await page.locator('[id="login"]').click();
+    await page.locator('[id="userEmail"]').fill("");
+    await page.locator('[id="userEmail"]').fill("ayubkhan9888@gmail.com");
+    await page.locator('[id="userPassword"]').fill("");
+    await page.locator('[id="userPassword"]').fill("Ay@9845563");
+    await page.locator('[id="login"]').click();
 
-//     console.log(await page.title());
-//     await page.waitForLoadState('networkidle'); // This is wait until the network is idle and all the requests are completed. This is used to wait for the page to load completely before performing any actions on the page.
-//     await page.locator('.card-body b').first().waitFor(); // This is wait until the first element is visible on the page. This is used to wait for the page to load completely before performing any actions on the page.
+    console.log(await page.title());
+    await page.waitForLoadState('networkidle'); // This is wait until the network is idle and all the requests are completed. This is used to wait for the page to load completely before performing any actions on the page.
+    await page.locator('.card-body b').first().waitFor(); // This is wait until the first element is visible on the page. This is used to wait for the page to load completely before performing any actions on the page.
 
-//     console.log (await page.locator('.card-body b').first().textContent());
-//     const itemTitles = await page.locator('.card-body b').allTextContents();
-//     console.log(itemTitles);
-//     await page.locator('.card-body b').first().click();
-//     console.log (await page.title());
+    console.log (await page.locator('.card-body b').first().textContent());
+    const itemTitles = await page.locator('.card-body b').allTextContents();
+    console.log(itemTitles);
+    await page.locator('.card-body b').first().click();
+    console.log (await page.title());
 
-// });
+});
 
 
 // //Rahul Shetty Academy Client App Login Test
@@ -177,15 +177,15 @@ test ('File Upload Test', async ({browser}) => {
     await page.pause();
 });
 
-test ('File Download Test', async ({browser}) => {
+// test ('File Download Test', async ({browser}) => {
 
-    const context = await browser.newContext();
-    const page = await context.newPage();
-    await page.goto("https://the-internet.herokuapp.com/download");
-    const [download] = await Promise.all([
-        page.waitForEvent('download'),
-        page.locator("a[href='download/certificate (2).pdf']").click(), // This will click on the download link and wait for the download to start
-    ]);
-    await download.saveAs('tests/certificate (2).pdf'); // This will save the downloaded file to the specified path
-    await page.pause();
-});
+//     const context = await browser.newContext();
+//     const page = await context.newPage();
+//     await page.goto("https://the-internet.herokuapp.com/download");
+//     const [download] = await Promise.all([
+//         page.waitForEvent('download'),
+//         page.locator("a[href='download/certificate (2).pdf']").click(), // This will click on the download link and wait for the download to start
+//     ]);
+//     await download.saveAs('tests/certificate (2).pdf'); // This will save the downloaded file to the specified path
+//     await page.pause();
+// });
