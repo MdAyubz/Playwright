@@ -160,7 +160,32 @@ test('Client App Test', async ({browser}) => {
             break;
         }
     }
+    //await page.pause();
+
+
+});
+
+test ('File Upload Test', async ({browser}) => {
+
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto("https://the-internet.herokuapp.com/upload");
+    const filePath = "tests/example.spec.txt";
+    await page.locator("#file-upload").setInputFiles(filePath);
+    await page.locator("#file-submit").click();
+    await expect(page.locator("#uploaded-files")).toHaveText("example.spec.txt");
     await page.pause();
+});
 
+test ('File Download Test', async ({browser}) => {
 
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto("https://the-internet.herokuapp.com/download");
+    const [download] = await Promise.all([
+        page.waitForEvent('download'),
+        page.locator("a[href='download/certificate (2).pdf']").click(), // This will click on the download link and wait for the download to start
+    ]);
+    await download.saveAs('tests/certificate (2).pdf'); // This will save the downloaded file to the specified path
+    await page.pause();
 });
