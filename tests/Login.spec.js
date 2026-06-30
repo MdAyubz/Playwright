@@ -102,7 +102,8 @@ test ('Child Page Test', async ({browser}) => {
     const dropDown= await page.locator('select.form-control'); //This will locate the dropdown element
     await userName.fill(domain);
     await passWord.fill('Learning@830$3mK2');
-
+    console.log("Username: " + await page.locator('#username').inputValue());//This will print the value of the username field in the console
+    console.log("Password: " + await page.locator('#password').inputValue());//This will print the value of the password field in the console
     await page.locator('.radiotextsty').last().click(); //This will click on the last radio button
     await expect(page.locator('.radiotextsty').last()).toBeChecked(); //This will check if the last radio button is checked or not
     await dropDown.selectOption('teach');//This will select the option with value 'teach' from the dropdown
@@ -115,4 +116,51 @@ test ('Child Page Test', async ({browser}) => {
 
 });
 
-   
+test('Client App Test', async ({browser}) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
+    const title = await page.title();
+    console.log(title);
+    await expect(page).toHaveTitle(title);
+    console.log("Title is correct");
+
+    // await page.locator('[id="userEmail"]').fill('ayub@gmail.com');
+    // await page.locator('[id="userPassword"]').fill('ayub');
+    // await page.locator('[id="login"]').click();
+    // console.log(await page.locator('[id="toast-container"]').textContent());
+    // await page.locator('[id="toast-container"]').textContent("Incorrect");
+
+    await page.locator('[id="userEmail"]').fill("");
+    await page.locator('[id="userEmail"]').fill("ayubkhan9888@gmail.com");
+    await page.locator('[id="userPassword"]').fill("");
+    await page.locator('[id="userPassword"]').fill("Ay@9845563");
+    await page.locator('[id="login"]').click();
+
+    console.log(await page.title());
+    await page.waitForLoadState('networkidle'); // This is wait until the network is idle and all the requests are completed. This is used to wait for the page to load completely before performing any actions on the page.
+    await page.locator('.card-body b').first().waitFor(); // This is wait until the first element is visible on the page. This is used to wait for the page to load completely before performing any actions on the page.
+
+    console.log (await page.locator('.card-body b').first().textContent());
+    const itemTitles = await page.locator('.card-body b').allTextContents();
+    console.log(itemTitles);
+    await page.locator('.card-body b').first().click();
+    console.log (await page.title());
+
+    const porductName="ZARA COAT 3";
+    const products = page.locator('.card-body');
+    const productCount = await products.count();
+    await page.locator('.card-body b').first().waitFor(); // This is wait until the first element is visible on the page. This is used to wait for the page to load completely before performing any actions on the page.
+    console.log("Product Count: " + productCount);
+    for (let i = 0; i < productCount; ++i) {
+        console.log(await products.nth(i).locator('b').textContent());
+        //const productTitle = await products.nth(i).locator('b').textContent();
+        if ( await products.nth(i).locator('b').textContent() === porductName) {
+            await products.nth(i).locator("text= Add To Cart").click();
+            break;
+        }
+    }
+    await page.pause();
+
+
+});
